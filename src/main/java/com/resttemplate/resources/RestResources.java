@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.resttemplate.model.Post;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
 
@@ -22,5 +23,10 @@ public class RestResources {
     public List<Post> getPosts(){
         List<Post> posts =  restService.getPosts();
         return posts;
+    }
+
+    @GetMapping("/web-client")
+    public Flux<Post> getPostsWebClient(){
+        return   restService.getPostsWebClient();
     }
 }
