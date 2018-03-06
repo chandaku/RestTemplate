@@ -1,6 +1,7 @@
 package com.resttemplate.service;
 
 import com.resttemplate.model.Post;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -17,9 +18,11 @@ import java.util.stream.Collectors;
 @Service
 public class DefaultRestService implements RestService {
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     @Override
     public List<Post> getPosts() {
-        RestTemplate restTemplate = new RestTemplate();
         String resourceUrl
                 = "http://localhost:8089/posts";
         ResponseEntity<List<Post>> response = restTemplate.exchange(resourceUrl,
